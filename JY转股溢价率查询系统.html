@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JY转股溢价率查询系统</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            max-width: 520px;
+            width: 90%;
+        }
+        h1 {
+            font-size: 1.6em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85em;
+            margin-bottom: 36px;
+        }
+        .countdown {
+            font-size: 3em;
+            font-weight: 700;
+            color: #e94560;
+            margin-bottom: 8px;
+            font-variant-numeric: tabular-nums;
+        }
+        .countdown-label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85em;
+            margin-bottom: 36px;
+        }
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .link-btn {
+            display: block;
+            padding: 14px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 1em;
+            font-weight: 500;
+            transition: transform 0.15s, box-shadow 0.15s;
+            cursor: pointer;
+        }
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .link-btn:active {
+            transform: translateY(0);
+        }
+        .link-primary {
+            background: linear-gradient(135deg, #e94560, #c23152);
+        }
+        .link-secondary {
+            background: linear-gradient(135deg, #0f3460, #16213e);
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .link-tag {
+            display: inline-block;
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-left: 6px;
+        }
+        @media (max-width: 480px) {
+            .container { padding: 40px 24px; }
+            h1 { font-size: 1.3em; }
+            .countdown { font-size: 2.4em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JY转股溢价率查询系统</h1>
+        <p class="subtitle">请选择线路访问</p>
+        <div class="countdown" id="countdown">5</div>
+        <p class="countdown-label">秒后自动跳转至默认线路</p>
+        <div class="links">
+            <a class="link-btn link-primary" href="https://frp-six.com:28353/">
+                浙江电信<span class="link-tag">（默认线路）</span>
+            </a>
+            <a class="link-btn link-secondary" href="https://frp-end.com:48863/">
+                合肥电信<span class="link-tag">（备用线路）</span>
+            </a>
+        </div>
+    </div>
+    <script>
+        (function() {
+            var seconds = 5;
+            var el = document.getElementById('countdown');
+            var timer = setInterval(function() {
+                seconds--;
+                el.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'https://frp-six.com:28353/';
+                }
+            }, 1000);
+        })();
+    </script>
+</body>
+</html>
